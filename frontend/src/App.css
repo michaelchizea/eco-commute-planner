@@ -77,3 +77,14 @@ button:hover {
   padding: 5px 0;
   border-bottom: 1px solid #bbdefb;
 }
+
+.map-section {
+  margin-top: 20px;
+}
+
+.map-container {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { testAPI, getTflLines } from './services/api';
+import Map from './components/Map';
 import './App.css';
 
 function App() {
@@ -73,6 +74,13 @@ function App() {
           
           <button type="submit">Find Eco Routes</button>
         </form>
+
+      {/* Map component to show the route */}
+
+        <div className="map-section">
+          <h3>Route Map</h3>
+          <Map />
+        </div>
         
         {apiStatus && (
           <div className="api-status">
@@ -91,6 +99,10 @@ function App() {
             </ul>
           </div>
         )}
+     
+
+        
+        
       </main>
     </div>
   );
