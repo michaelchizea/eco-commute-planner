@@ -1,14 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { testAPI, getTflLines } from './services/api';
 import './App.css';
 
 function App() {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
+  const [apiStatus, setApiStatus] = useState('');
+  const [tflLines, setTflLines] = useState([]);
   
+  useEffect(() => {
+    // Test API connection on component mount
+    const checkAPI = async () => {
+      try {
+        const data = await testAPI();
+        setApiStatus(data.message);
+      } catch (error) {
+        setApiStatus('API connection failed');
+      }
+    };
+    
+    checkAPI();
+  }, []);
+  
+  const fetchTflLines = async () => {
+    try {
+      const lines = await getTflLines();
+      setTflLines(lines);
+    } catch (error) {
+      console.error('Failed to fetch TfL lines');
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Planning route from', origin, 'to', destination);
-    // Will implement API calls later
+    // Test the TfL API connection
+    fetchTflLines();
   };
 
   return (
@@ -46,6 +73,24 @@ function App() {
           
           <button type="submit">Find Eco Routes</button>
         </form>
+        
+        {apiStatus && (
+          <div className="api-status">
+            <p>Backend status: {apiStatus}</p>
+          </div>
+        )}
+        
+        {tflLines.length > 0 && (
+          <div className="tfl-lines">
+            <h3>Available TfL Lines:</h3>
+            <ul>
+              {tflLines.slice(0, 5).map(line => (
+                <li key={line.id}>{line.name} ({line.modeName})</li>
+              ))}
+              {tflLines.length > 5 && <li>...and {tflLines.length - 5} more</li>}
+            </ul>
+          </div>
+        )}
       </main>
     </div>
   );

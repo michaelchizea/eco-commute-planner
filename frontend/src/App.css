@@ -52,3 +52,28 @@ button {
 button:hover {
   background-color: #45a049;
 }
+.api-status {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f5e9;
+  border-radius: 4px;
+  color: #2e7d32;
+}
+
+.tfl-lines {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e3f2fd;
+  border-radius: 4px;
+}
+
+.tfl-lines ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.tfl-lines li {
+  padding: 5px 0;
+  border-bottom: 1px solid #bbdefb;
+}
