@@ -90,7 +90,7 @@ function App() {
         
         {tflLines.length > 0 && (
           <div className="tfl-lines">
-            <h3>Available TfL Lines:</h3>
+            <h3>Available TfL Lines Now:</h3>
             <ul>
               {tflLines.slice(0, 5).map(line => (
                 <li key={line.id}>{line.name} ({line.modeName})</li>
