@@ -42,4 +42,21 @@ router.post('/compare', (req, res) => {
   }
 });
 
+// Calculate savings over time
+router.post('/savings', (req, res) => {
+  try {
+    const { journey, frequency, timeSpan } = req.body;
+    
+    if (!journey || !frequency) {
+      return res.status(400).json({ error: 'Journey and frequency are required' });
+    }
+    
+    const results = calculateSavingsOverTime(journey, frequency, timeSpan);
+    res.json(results);
+  } catch (error) {
+    console.error('Savings calculation error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

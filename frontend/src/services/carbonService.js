@@ -37,3 +37,17 @@ export const compareJourneyOptions = async (journeyOptions) => {
     throw error;
   }
 };
+
+export const calculateSavingsOverTime = async (journey, frequency, timeSpan) => {
+  try {
+    const response = await axios.post(`${API_URL}/savings`, {
+      journey,
+      frequency,
+      timeSpan
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error calculating savings over time:', error);
+    throw error;
+  }
+};

@@ -1,7 +1,6 @@
-// src/components/CarbonResults.js
 import React from 'react';
 
-const CarbonResults = ({ results }) => {
+const CarbonResults = ({ results, onSelectJourney }) => {
   if (!results || results.length === 0) {
     return null;
   }
@@ -14,6 +13,7 @@ const CarbonResults = ({ results }) => {
           <div 
             key={index} 
             className={`result-card ${index === 0 ? 'best-option' : ''}`}
+            onClick={() => onSelectJourney(result)}
           >
             <div className="result-header">
               <h4>{result.mode.charAt(0).toUpperCase() + result.mode.slice(1)}</h4>
@@ -27,6 +27,7 @@ const CarbonResults = ({ results }) => {
                 <p><strong>Car Type:</strong> {result.options.carType}, {result.options.occupancy} occupancy</p>
               )}
             </div>
+            <button className="select-journey-btn">Track Savings</button>
           </div>
         ))}
       </div>

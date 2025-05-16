@@ -142,3 +142,227 @@ button:hover {
   margin: 8px 0;
   font-size: 14px;
 }
+
+/* Carbon Visualizer Styling */
+.carbon-visualizer {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e8f5e9;
+  border-radius: 4px;
+}
+
+.visualizer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  padding: 20px 0;
+  border-bottom: 1px solid #a5d6a7;
+}
+
+.visualizer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+}
+
+.visualizer-bar-container {
+  width: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.visualizer-bar {
+  width: 100%;
+  background-color: #4caf50;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: height 0.5s ease;
+  display: flex;
+  justify-content: center;
+}
+
+.visualizer-value {
+  position: absolute;
+  top: -20px;
+  font-size: 12px;
+  color: #333;
+}
+
+.visualizer-label {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transport-mode {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.savings-badge {
+  margin-top: 4px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.visualizer-legend {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.results-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Loading styles */
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Carbon Savings Styling */
+.carbon-savings {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e0f2f1;
+  border-radius: 4px;
+}
+
+.savings-calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+@media (min-width: 768px) {
+  .savings-calculator {
+    flex-direction: row;
+  }
+  
+  .calculator-form, .savings-results {
+    flex: 1;
+  }
+}
+
+.calculator-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.calculator-form .form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calculator-form select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100px;
+}
+
+.calculate-button {
+  margin-top: 10px;
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.calculate-button:hover {
+  background-color: #00796b;
+}
+
+.savings-results {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.savings-highlight {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.savings-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #009688;
+  display: block;
+}
+
+.savings-unit {
+  font-size: 1.2rem;
+  color: #00796b;
+}
+
+.savings-period {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+.savings-equivalents h4 {
+  margin-bottom: 10px;
+  color: #00796b;
+}
+
+.savings-equivalents ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.savings-equivalents li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e0f2f1;
+}
+
+/* Add styles for selectable result cards */
+.result-card {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.result-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.select-journey-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.result-card:hover .select-journey-btn {
+  opacity: 1;
+}

@@ -31,6 +31,49 @@ const EMISSION_FACTORS = {
 };
 
 /**
+ * Calculate carbon savings over time based on commute frequency
+ * @param {Object} journey - Journey with carbon savings information
+ * @param {Object} frequency - How often the journey is taken (e.g., {perDay: 2, daysPerWeek: 5})
+ * @param {number} timeSpan - Number of weeks to calculate for
+ * @returns {Object} Carbon savings over the specified time period
+ */
+const calculateSavingsOverTime = (journey, frequency, timeSpan = 52) => { // Default to yearly (52 weeks)
+  const journeysPerWeek = frequency.perDay * frequency.daysPerWeek;
+  const totalJourneys = journeysPerWeek * timeSpan;
+  
+  const totalSavings = journey.savings * totalJourneys;
+  const equivalentActivities = getEquivalentActivities(totalSavings);
+  
+  return {
+    timeSpan: {
+      weeks: timeSpan,
+      description: timeSpan === 52 ? 'year' : `${timeSpan} weeks`
+    },
+    journeysPerWeek,
+    totalJourneys,
+    totalSavings,
+    carbonFootprintUnit: 'kg CO2e',
+    equivalentActivities
+  };
+};
+
+/**
+ * Get equivalent activities for the amount of carbon saved
+ * @param {number} kgCO2e - Carbon savings in kg CO2e
+ * @returns {Object} Equivalent activities
+ */
+const getEquivalentActivities = (kgCO2e) => {
+  return {
+    treeMonths: Math.round(kgCO2e / 21), // One tree absorbs ~21kg CO2 per month
+    smartphoneCharges: Math.round(kgCO2e / 0.009), // ~9g CO2e per full smartphone charge
+    milesDriven: Math.round(kgCO2e / 0.170), // Average petrol car kg CO2e per km, converted to miles
+    homeEnergyDays: Math.round(kgCO2e / 8.5) // Average UK home emits ~8.5kg CO2e per day
+  };
+};
+
+
+
+/**
  * Calculate carbon footprint for a journey
  * @param {string} mode - Transport mode
  * @param {number} distance - Distance in kilometers
@@ -86,5 +129,6 @@ const compareJourneyOptions = (journeyOptions) => {
 module.exports = {
   calculateCarbonFootprint,
   compareJourneyOptions,
+  calculateSavingsOverTime,
   EMISSION_FACTORS
 };
