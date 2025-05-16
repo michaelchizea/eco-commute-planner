@@ -88,3 +88,57 @@ button:hover {
   border-radius: 4px;
   overflow: hidden;
 }
+
+/* Carbon Results Styling */
+.carbon-results {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f1f8e9;
+  border-radius: 4px;
+}
+
+.results-container {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px 0;
+  gap: 15px;
+}
+
+.result-card {
+  min-width: 200px;
+  max-width: 250px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px;
+  flex: 1;
+}
+
+.best-option {
+  border: 2px solid #4caf50;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.result-header h4 {
+  margin: 0;
+  color: #333;
+}
+
+.best-badge {
+  background-color: #4caf50;
+  color: white;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.result-details p {
+  margin: 8px 0;
+  font-size: 14px;
+}

@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { testAPI, getTflLines } from './services/api';
 import Map from './components/Map';
 import './App.css';
+import { compareJourneyOptions } from './services/carbonService';
+import CarbonResults from './components/CarbonResults';
+
 
 function App() {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [apiStatus, setApiStatus] = useState('');
   const [tflLines, setTflLines] = useState([]);
-  
+  const [carbonResults, setCarbonResults] = useState([]);
+
+
   useEffect(() => {
     // Test API connection on component mount
     const checkAPI = async () => {
@@ -32,11 +37,31 @@ function App() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Planning route from', origin, 'to', destination);
+
+    try {
+      // Simulate different journey options
+      const journeyOptions = [
+        { mode: 'car', distance: 10, options: { carType: 'petrol', occupancy: 'single' } },
+        { mode: 'car', distance: 10, options: { carType: 'electric', occupancy: 'single' } },
+        { mode: 'bus', distance: 10.5 },
+        { mode: 'tube', distance: 9.5 },
+        { mode: 'cycling', distance: 8.5 }
+      ];
+      
+      const results = await compareJourneyOptions(journeyOptions);
+      setCarbonResults(results);
+
     // Test the TfL API connection
     fetchTflLines();
+    }
+    catch (error) {
+      console.error('Error calculating carbon footprint:', error);
+    }
+
+
   };
 
   return (
@@ -47,6 +72,12 @@ function App() {
       </header>
       
       <main>
+                {/* Add Carbon Results */}
+
+        {carbonResults.length > 0 && (
+          <CarbonResults results={carbonResults} />
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="origin">Starting Point:</label>
